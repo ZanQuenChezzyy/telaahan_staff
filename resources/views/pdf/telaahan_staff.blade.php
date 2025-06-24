@@ -324,115 +324,61 @@
                     <p style="margin-bottom:0pt; text-align:justify; line-height:normal; font-size:12pt">
                         {{ $telaahanStaff->kesimpulan }}
                     </p>
-                    <table
-                        style="margin-bottom:0pt; padding-top:8pt; border:1pt solid #000000; border-collapse:collapse">
-                        <tr>
-                            <td
-                                style="width:14.1pt; border-right:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:top">
-                                <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                    No
-                                </p>
-                            </td>
-                            <td
-                                style="width:156.95pt; border-right:1pt solid #000000; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:top">
-                                <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                    Nama Barang / Keterangan
-                                </p>
-                            </td>
-                            <td
-                                style="width:67.15pt; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:top">
-                                <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                    Jumlah
-                                </p>
-                            </td>
-                        </tr>
-                        @if ($telaahanStaff->jenis_permintaan_id === 1)
-                            @foreach ($telaahanStaff->permintaanBarang as $index => $barang)
-                                <tr style="height:37.4pt">
-                                    <td
-                                        style="width:14.1pt; border-top:1pt solid #000000; border-right:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p
-                                            style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                            {{ $index + 1 }}
-                                        </p>
-                                    </td>
-                                    <td
-                                        style="width:156.95pt; border:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p
-                                            style="margin-bottom:0pt; text-align:left; line-height:normal; font-size:12pt">
-                                            {{ $barang->nama }}
-                                        </p>
-                                    </td>
-                                    <td
-                                        style="width:67.15pt; border-top:1pt solid #000000; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p
-                                            style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                            {{ $barang->kuantitas }} unit
-                                        </p>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @elseif ($telaahanStaff->jenis_permintaan_id === 2)
-                            @foreach ($telaahanStaff->pemeliharaan as $index => $pemeliharaan)
-                                <tr style="height:37.4pt">
-                                    <td
-                                        style="width:14.1pt; border-top:1pt solid #000000; border-right:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p
-                                            style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                            {{ $index + 1 }}
-                                        </p>
-                                    </td>
-                                    <td
-                                        style="width:156.95pt; border:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p style="margin-bottom:0pt; line-height:normal; font-size:12pt">
-                                            {{ $pemeliharaan->keterangan }}
-                                        </p>
-                                    </td>
-                                    <td
-                                        style="width:67.15pt; border-top:1pt solid #000000; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p
-                                            style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                            -
-                                        </p>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @elseif ($telaahanStaff->jenis_permintaan_id === 3)
-                            @foreach ($telaahanStaff->lainnya as $index => $lainnya)
-                                <tr style="height:37.4pt">
-                                    <td
-                                        style="width:14.1pt; border-top:1pt solid #000000; border-right:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p
-                                            style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                            {{ $index + 1 }}
-                                        </p>
-                                    </td>
-                                    <td
-                                        style="width:156.95pt; border:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p style="margin-bottom:0pt; line-height:normal; font-size:12pt">
-                                            {{ $lainnya->keterangan }}
-                                        </p>
-                                    </td>
-                                    <td
-                                        style="width:67.15pt; border-top:1pt solid #000000; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
-                                        <p
-                                            style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
-                                            -
-                                        </p>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="3">Tidak ada data tersedia.</td>
-                            </tr>
-                        @endif
-                    </table>
+                    @if ($telaahanStaff->jenis_permintaan_id === 1)
+    <table
+        style="margin-bottom:0pt; padding-top:8pt; border:1pt solid #000000; border-collapse:collapse">
+        <tr>
+            <td
+                style="width:14.1pt; border-right:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:top">
+                <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
+                    No
+                </p>
+            </td>
+            <td
+                style="width:156.95pt; border-right:1pt solid #000000; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:top">
+                <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
+                    Nama Barang / Keterangan
+                </p>
+            </td>
+            <td
+                style="width:67.15pt; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:top">
+                <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
+                    Jumlah
+                </p>
+            </td>
+        </tr>
+
+        @foreach ($telaahanStaff->permintaanBarang as $index => $barang)
+            <tr style="height:37.4pt">
+                <td
+                    style="width:14.1pt; border-top:1pt solid #000000; border-right:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
+                    <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
+                        {{ $index + 1 }}
+                    </p>
+                </td>
+                <td
+                    style="width:156.95pt; border:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
+                    <p style="margin-bottom:0pt; text-align:left; line-height:normal; font-size:12pt">
+                        {{ $barang->nama }}
+                    </p>
+                </td>
+                <td
+                    style="width:67.15pt; border-top:1pt solid #000000; border-left:1pt solid #000000; border-bottom:1pt solid #000000; padding-right:4.9pt; padding-left:4.9pt; vertical-align:middle">
+                    <p style="margin-bottom:0pt; text-align:center; line-height:normal; font-size:12pt">
+                        {{ $barang->kuantitas }} unit
+                    </p>
+                </td>
+            </tr>
+        @endforeach
+    </table>
+@endif
+
                     <p style="margin-bottom:0pt; text-align:justify; line-height:normal; font-size:12pt">
                     </p>
                 </td>
             </tr>
         </table>
+         @if ($telaahanStaff->jenis_permintaan_id === 1)
         <p>
             <br style="page-break-before:always; clear:both">
         </p>
@@ -445,6 +391,8 @@
         <p>
             <br style="page-break-before:always; clear:both">
         </p>
+        @endif
+
         <table style="margin-bottom:0pt; border-collapse:collapse">
             <tr style="height:41.8pt">
                 <td style="width:22.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
