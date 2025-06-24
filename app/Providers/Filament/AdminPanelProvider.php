@@ -26,6 +26,8 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('/')
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('30s')
             ->brandName('RSUD Taman Husada')
             ->brandLogo(asset('img/rsud_dark.png'))
             ->darkModeBrandLogo(asset('img/rsud_white.png'))

@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\TelaahanStaffExporter;
 use App\Filament\Resources\TelaahanStaffResource\Pages;
 use App\Filament\Resources\TelaahanStaffResource\RelationManagers;
 use App\Models\TelaahanStaff;
 use App\Models\Unit;
 use Carbon\Carbon;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\ActionGroup;
@@ -29,6 +31,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\RawJs;
 use Filament\Tables;
+use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\QueryBuilder;
@@ -432,7 +435,7 @@ class TelaahanStaffResource extends Resource
 
                 // Kondisi Kolom Status Berdasarkan unit_id
                 Auth::user()->unit_id === 1
-                    ? SelectColumn::make('status')
+                ? SelectColumn::make('status')
                     ->label('Status Telaahan Staff')
                     ->options([
                         0 => 'Menunggu',
@@ -442,7 +445,7 @@ class TelaahanStaffResource extends Resource
                     ->selectablePlaceholder(false)
                     ->searchable()
                     ->sortable()
-                    : TextColumn::make('status')
+                : TextColumn::make('status')
                     ->label('Status')
                     ->badge()
                     ->colors([
@@ -469,7 +472,7 @@ class TelaahanStaffResource extends Resource
             ])
             ->filters([
                 Auth::user()->unit_id === 1
-                    ? SelectFilter::make('unit_id')
+                ? SelectFilter::make('unit_id')
                     ->label('Unit')
                     ->options(function () {
                         $options = [];
@@ -490,7 +493,7 @@ class TelaahanStaffResource extends Resource
                         return $options;
                     })
                     ->native(false)
-                    : SelectFilter::make('unit_id')
+                : SelectFilter::make('unit_id')
                     ->label('Unit')
                     ->options(function () {
                         $options = [];
@@ -546,6 +549,11 @@ class TelaahanStaffResource extends Resource
             ])
             ->bulkActions([
                 BulkActionGroup::make([
+                    ExportAction::make()
+                        ->exporter(TelaahanStaffExporter::class)
+                        ->formats([
+                            ExportFormat::Xlsx,
+                        ]),
                     DeleteBulkAction::make(),
                 ]),
             ]);
