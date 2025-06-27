@@ -28,6 +28,16 @@ class User extends Authenticatable
         'unit_id',
     ];
 
+    protected static function booted()
+    {
+        static::created(function (User $user) {
+            // Cek apakah role 'User' sudah ada, lalu assign
+            if (!$user->hasRole('User')) {
+                $user->assignRole('User');
+            }
+        });
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
